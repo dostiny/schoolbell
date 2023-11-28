@@ -1,12 +1,37 @@
 import React from "react";
 import tw from "tailwind-styled-components";
 
-const Form = () => {
+interface PropsType {
+  idx: number;
+  inputCnt: number[];
+  setInputCnt: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
+const Form = ({ idx, inputCnt, setInputCnt }: PropsType) => {
+  const OnRemove = (index: number) => {
+    const OnRemove = inputCnt.filter((_, i) => {
+      return i !== index;
+    });
+    setInputCnt(OnRemove);
+  };
+
   return (
     <OutDiv>
       <HeaderDiv>
-        <HeaderTitle>유저</HeaderTitle>
-        <HeaderClose>X</HeaderClose>
+        <HeaderTitle
+          onClick={() => {
+            console.log(idx);
+          }}
+        >
+          유저
+        </HeaderTitle>
+        <HeaderClose
+          onClick={() => {
+            OnRemove(idx);
+          }}
+        >
+          X
+        </HeaderClose>
       </HeaderDiv>
       <FormDiv>
         <FormTitle>Name</FormTitle>

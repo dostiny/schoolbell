@@ -8,19 +8,11 @@ const User = () => {
 
   return (
     <div>
-      {inputCnt.map(() => (
-        <Form />
+      {inputCnt.map((i, idx) => (
+        <Form key={i} idx={idx} inputCnt={inputCnt} setInputCnt={setInputCnt} />
       ))}
-
-      <FormBottom />
+      <FormBottom inputCnt={inputCnt} setInputCnt={setInputCnt} />
       <UserList />
-      <button
-        onClick={() => {
-          setInputCnt([...inputCnt, 0]);
-        }}
-      >
-        버튼
-      </button>
     </div>
   );
 };

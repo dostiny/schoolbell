@@ -1,10 +1,21 @@
 import React from "react";
 import tw from "tailwind-styled-components";
 
-const FormBottom = () => {
+interface PropsType {
+  inputCnt: number[];
+  setInputCnt: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
+const FormBottom = ({ inputCnt, setInputCnt }: PropsType) => {
   return (
     <OutDiv>
-      <Btn>Add User</Btn>
+      <Btn
+        onClick={() => {
+          setInputCnt([...inputCnt, inputCnt[inputCnt.length - 1] + 1]);
+        }}
+      >
+        Add User
+      </Btn>
       <Btn>Confirm</Btn>
     </OutDiv>
   );
