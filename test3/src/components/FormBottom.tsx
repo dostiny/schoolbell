@@ -1,17 +1,24 @@
 import React from "react";
 import tw from "tailwind-styled-components";
+import type { ListType } from "../pages/User";
 
 interface PropsType {
-  inputCnt: number[];
-  setInputCnt: React.Dispatch<React.SetStateAction<number[]>>;
+  inputName: ListType[];
+  setInputName: React.Dispatch<React.SetStateAction<ListType[]>>;
 }
 
-const FormBottom = ({ inputCnt, setInputCnt }: PropsType) => {
+const FormBottom = ({ inputName, setInputName }: PropsType) => {
+  const AddList = () => {
+    const lastIdx: number | null = inputName[inputName.length - 1].id;
+    if (typeof lastIdx === "number") {
+      setInputName([...inputName, { id: lastIdx + 1, name: "" }]);
+    }
+  };
   return (
     <OutDiv>
       <Btn
         onClick={() => {
-          setInputCnt([...inputCnt, inputCnt[inputCnt.length - 1] + 1]);
+          AddList();
         }}
       >
         Add User

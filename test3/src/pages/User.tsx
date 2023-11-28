@@ -3,15 +3,29 @@ import Form from "../components/Form";
 import FormBottom from "../components/FormBottom";
 import UserList from "../components/UserList";
 
+export interface ListType {
+  id: number | null;
+  name: string;
+}
+
+export interface InfoType {
+  name: string;
+  password: string;
+}
+
 const User = () => {
-  const [inputCnt, setInputCnt] = useState<number[]>([0]);
+  const [inputName, setInputName] = useState<ListType[]>([{ id: 0, name: "" }]);
+  const [userInfo, setUserInfo] = useState<InfoType>({
+    name: "",
+    password: "",
+  });
 
   return (
     <div>
-      {inputCnt.map((i, idx) => (
-        <Form key={i} idx={idx} inputCnt={inputCnt} setInputCnt={setInputCnt} />
+      {inputName.map((i, idx) => (
+        <Form idx={i.id} inputName={inputName} setInputName={setInputName} />
       ))}
-      <FormBottom inputCnt={inputCnt} setInputCnt={setInputCnt} />
+      <FormBottom inputName={inputName} setInputName={setInputName} />
       <UserList />
     </div>
   );

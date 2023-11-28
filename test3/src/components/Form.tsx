@@ -1,18 +1,17 @@
 import React from "react";
 import tw from "tailwind-styled-components";
+import type { ListType } from "../pages/User";
 
 interface PropsType {
-  idx: number;
-  inputCnt: number[];
-  setInputCnt: React.Dispatch<React.SetStateAction<number[]>>;
+  idx: number | null;
+  inputName: ListType[];
+  setInputName: React.Dispatch<React.SetStateAction<ListType[]>>;
 }
 
-const Form = ({ idx, inputCnt, setInputCnt }: PropsType) => {
+const Form = ({ idx, inputName, setInputName }: PropsType) => {
   const OnRemove = (index: number) => {
-    const OnRemove = inputCnt.filter((_, i) => {
-      return i !== index;
-    });
-    setInputCnt(OnRemove);
+    const newList = inputName.filter((i) => i.id !== index);
+    setInputName(newList);
   };
 
   return (
@@ -20,14 +19,14 @@ const Form = ({ idx, inputCnt, setInputCnt }: PropsType) => {
       <HeaderDiv>
         <HeaderTitle
           onClick={() => {
-            console.log(idx);
+            console.log(inputName);
           }}
         >
-          유저
+          User - {idx}
         </HeaderTitle>
         <HeaderClose
           onClick={() => {
-            OnRemove(idx);
+            typeof idx === "number" ? OnRemove(idx) : console.log(1);
           }}
         >
           X
@@ -35,11 +34,21 @@ const Form = ({ idx, inputCnt, setInputCnt }: PropsType) => {
       </HeaderDiv>
       <FormDiv>
         <FormTitle>Name</FormTitle>
-        <InputDiv></InputDiv>
+        <InputDiv
+          onChange={(e) => {
+            console.log(e.target.value);
+          }}
+        ></InputDiv>
         <Message>ㅇㅇㅇㅇ</Message>
       </FormDiv>
       <FormDiv>
-        <FormTitle>Password</FormTitle>
+        <FormTitle
+          onClick={() => {
+            console.log(idx);
+          }}
+        >
+          Password
+        </FormTitle>
         <InputDiv type="password"></InputDiv>
       </FormDiv>
     </OutDiv>
@@ -49,7 +58,7 @@ const Form = ({ idx, inputCnt, setInputCnt }: PropsType) => {
 export default Form;
 
 const OutDiv = tw.div`border-solid border-2 border-black text-black flex flex-col w-100 text-2xl text-center my-3`;
-const HeaderDiv = tw.div`flex justify-between items-start m-3`;
+const HeaderDiv = tw.div`flex justify-between items-start m-3 font-bold`;
 const HeaderTitle = tw.div``;
 const HeaderClose = tw.button`border-solid border-2 border-black w-9 h-9 hover:text-white hover:bg-black`;
 const FormDiv = tw.div`flex flex-col justify-start text-start m-3 text-lg`;
