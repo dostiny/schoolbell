@@ -15,10 +15,9 @@ export interface InfoType {
 
 const User = () => {
   const [inputName, setInputName] = useState<ListType[]>([{ id: 0, name: "" }]);
-  const [userInfo, setUserInfo] = useState<InfoType>({
-    name: "",
-    password: "",
-  });
+  const [nameList, setNameList] = useState<string[]>([]);
+  const [nameTF, setNameTF] = useState<string>("");
+  const [passTF, setPassTF] = useState<string>("");
 
   return (
     <div>
@@ -28,6 +27,10 @@ const User = () => {
           id={i.id}
           inputName={inputName}
           setInputName={setInputName}
+          nameTF={nameTF}
+          setNameTf={setNameTF}
+          passTF={passTF}
+          setPassTF={setPassTF}
         />
       ))}
       <FormBottom inputName={inputName} setInputName={setInputName} />
