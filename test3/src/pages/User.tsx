@@ -18,7 +18,7 @@ const User = () => {
 
   useEffect(() => {
     const newList = [...inputName];
-    if (newList.some((item) => item.name === "" && item.password === "")) {
+    if (newList.some((item) => item.name === "" || item.password === "")) {
       setNameTF(false);
       setPassTF(false);
     }
