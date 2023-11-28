@@ -11,7 +11,7 @@ const FormBottom = ({ inputName, setInputName }: PropsType) => {
   const AddList = () => {
     const lastIdx: number | null = inputName[inputName.length - 1].id;
     if (typeof lastIdx === "number") {
-      setInputName([...inputName, { id: lastIdx + 1, name: "" }]);
+      setInputName([...inputName, { id: lastIdx + 1, name: "", password: "" }]);
     }
   };
   return (

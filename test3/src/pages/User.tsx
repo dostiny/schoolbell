@@ -6,15 +6,13 @@ import UserList from "../components/UserList";
 export interface ListType {
   id: number | null;
   name: string;
-}
-
-export interface InfoType {
-  name: string;
   password: string;
 }
 
 const User = () => {
-  const [inputName, setInputName] = useState<ListType[]>([{ id: 0, name: "" }]);
+  const [inputName, setInputName] = useState<ListType[]>([
+    { id: 0, name: "", password: "" },
+  ]);
   const [nameList, setNameList] = useState<string[]>([]);
   const [nameTF, setNameTF] = useState<string>("");
   const [passTF, setPassTF] = useState<string>("");

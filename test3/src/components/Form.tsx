@@ -49,6 +49,19 @@ const Form = ({
     }
   };
 
+  const changePwd = (event: any) => {
+    const newList = [...inputName];
+    newList[idx].password = event;
+    setInputName(newList);
+    if (event.length === 0) {
+      setPassMst("password is requirde");
+    } else if (event.length < 6) {
+      setPassMst("Password must be at loast 6 charaters long.");
+    } else if (event.length >= 6) {
+      setPassMst("");
+    }
+  };
+
   return (
     <OutDiv>
       <HeaderDiv>
@@ -90,9 +103,10 @@ const Form = ({
           className={`${passMsg ? "border-red-600" : ""}`}
           type="password"
           onChange={(e) => {
-            console.log(e);
+            changePwd(e.target.value);
           }}
         ></InputDiv>
+        <Message className={`${passMsg ? "" : "hidden"}`}>{passMsg}</Message>
       </FormDiv>
     </OutDiv>
   );
