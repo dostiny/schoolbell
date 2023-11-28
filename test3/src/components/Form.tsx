@@ -3,14 +3,21 @@ import tw from "tailwind-styled-components";
 import type { ListType } from "../pages/User";
 
 interface PropsType {
-  idx: number | null;
+  idx: number;
+  id: number | null;
   inputName: ListType[];
   setInputName: React.Dispatch<React.SetStateAction<ListType[]>>;
 }
 
-const Form = ({ idx, inputName, setInputName }: PropsType) => {
+const Form = ({ idx, id, inputName, setInputName }: PropsType) => {
   const OnRemove = (index: number) => {
     const newList = inputName.filter((i) => i.id !== index);
+    setInputName(newList);
+  };
+
+  const changeName = (event: any) => {
+    const newList = [...inputName];
+    newList[idx].name = event;
     setInputName(newList);
   };
 
@@ -22,11 +29,11 @@ const Form = ({ idx, inputName, setInputName }: PropsType) => {
             console.log(inputName);
           }}
         >
-          User - {idx}
+          User - {id}
         </HeaderTitle>
         <HeaderClose
           onClick={() => {
-            typeof idx === "number" ? OnRemove(idx) : console.log(1);
+            typeof id === "number" ? OnRemove(id) : console.log(1);
           }}
         >
           X
@@ -35,8 +42,9 @@ const Form = ({ idx, inputName, setInputName }: PropsType) => {
       <FormDiv>
         <FormTitle>Name</FormTitle>
         <InputDiv
+          value={inputName[idx].name}
           onChange={(e) => {
-            console.log(e.target.value);
+            changeName(e.target.value);
           }}
         ></InputDiv>
         <Message>ㅇㅇㅇㅇ</Message>
@@ -44,12 +52,17 @@ const Form = ({ idx, inputName, setInputName }: PropsType) => {
       <FormDiv>
         <FormTitle
           onClick={() => {
-            console.log(idx);
+            console.log(id);
           }}
         >
           Password
         </FormTitle>
-        <InputDiv type="password"></InputDiv>
+        <InputDiv
+          type="password"
+          onChange={(e) => {
+            console.log(e);
+          }}
+        ></InputDiv>
       </FormDiv>
     </OutDiv>
   );

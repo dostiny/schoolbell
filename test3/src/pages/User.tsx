@@ -23,7 +23,12 @@ const User = () => {
   return (
     <div>
       {inputName.map((i, idx) => (
-        <Form idx={i.id} inputName={inputName} setInputName={setInputName} />
+        <Form
+          idx={idx}
+          id={i.id}
+          inputName={inputName}
+          setInputName={setInputName}
+        />
       ))}
       <FormBottom inputName={inputName} setInputName={setInputName} />
       <UserList />
