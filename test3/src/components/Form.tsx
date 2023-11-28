@@ -7,10 +7,10 @@ interface PropsType {
   id: number | null;
   inputName: ListType[];
   setInputName: React.Dispatch<React.SetStateAction<ListType[]>>;
-  nameTF: string;
-  setNameTf: React.Dispatch<React.SetStateAction<string>>;
-  passTF: string;
-  setPassTF: React.Dispatch<React.SetStateAction<string>>;
+  nameTF: boolean;
+  setNameTf: React.Dispatch<React.SetStateAction<boolean>>;
+  passTF: boolean;
+  setPassTF: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Form = ({
@@ -37,14 +37,18 @@ const Form = ({
     setInputName(newList);
     if (event.length === 0) {
       setNameMsg("Name is requirde");
+      setNameTf(false);
     } else if (event.length < 3) {
       setNameMsg("Name must be at loast 3 charaters long.");
+      setNameTf(false);
     } else if (event.length >= 3) {
       setNameMsg("");
       if (newList.some((item) => item.id !== idx && item.name === event)) {
         setNameMsg("The name '" + event + "' is duplicated.");
+        setNameTf(false);
       } else {
         setNameMsg("");
+        setNameTf(true);
       }
     }
   };
@@ -55,10 +59,13 @@ const Form = ({
     setInputName(newList);
     if (event.length === 0) {
       setPassMst("password is requirde");
+      setPassTF(false);
     } else if (event.length < 6) {
       setPassMst("Password must be at loast 6 charaters long.");
+      setPassTF(false);
     } else if (event.length >= 6) {
       setPassMst("");
+      setPassTF(true);
     }
   };
 

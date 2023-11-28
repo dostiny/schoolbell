@@ -12,6 +12,6 @@ const UserList = () => {
 
 export default UserList;
 
-const OutDiv = tw.div`bg-gray-300 text-black flex flex-col w-100 text-lg p-3 hidden`;
+const OutDiv = tw.div`bg-gray-300 text-black flex flex-col w-100 text-lg p-3`;
 const NameDiv = tw.div``;
 const PasswordDiv = tw.div``;

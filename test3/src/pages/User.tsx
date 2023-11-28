@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "../components/Form";
 import FormBottom from "../components/FormBottom";
 import UserList from "../components/UserList";
@@ -13,9 +13,16 @@ const User = () => {
   const [inputName, setInputName] = useState<ListType[]>([
     { id: 0, name: "", password: "" },
   ]);
-  const [nameList, setNameList] = useState<string[]>([]);
-  const [nameTF, setNameTF] = useState<string>("");
-  const [passTF, setPassTF] = useState<string>("");
+  const [nameTF, setNameTF] = useState<boolean>(false);
+  const [passTF, setPassTF] = useState<boolean>(false);
+
+  useEffect(() => {
+    const newList = [...inputName];
+    if (newList.some((item) => item.name === "" && item.password === "")) {
+      setNameTF(false);
+      setPassTF(false);
+    }
+  });
 
   return (
     <div>
@@ -31,7 +38,12 @@ const User = () => {
           setPassTF={setPassTF}
         />
       ))}
-      <FormBottom inputName={inputName} setInputName={setInputName} />
+      <FormBottom
+        inputName={inputName}
+        setInputName={setInputName}
+        nameTF={nameTF}
+        passTF={passTF}
+      />
       <UserList />
     </div>
   );
