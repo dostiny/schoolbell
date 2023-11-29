@@ -1,6 +1,8 @@
 import React from "react";
 import tw from "tailwind-styled-components";
 import type { ListType } from "../pages/User";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "./../store/nameList";
 
 interface PropsType {
   inputName: ListType[];
@@ -10,6 +12,11 @@ interface PropsType {
 }
 
 const FormBottom = ({ inputName, setInputName, nameTF, passTF }: PropsType) => {
+  let username = useSelector((state) => {
+    return state;
+  });
+  let dispatch = useDispatch();
+
   const AddList = () => {
     const lastIdx: number | null = inputName[inputName.length - 1].id;
     if (typeof lastIdx === "number") {
@@ -18,6 +25,13 @@ const FormBottom = ({ inputName, setInputName, nameTF, passTF }: PropsType) => {
   };
   return (
     <OutDiv>
+      <button
+        onClick={() => {
+          console.log(username);
+        }}
+      >
+        출력
+      </button>
       <Btn
         onClick={() => {
           AddList();
@@ -28,7 +42,8 @@ const FormBottom = ({ inputName, setInputName, nameTF, passTF }: PropsType) => {
       <Btn
         disabled={!nameTF && !passTF}
         onClick={() => {
-          console.log(123);
+          dispatch(addUser(inputName));
+          setInputName([{ id: 0, name: "", password: "" }]);
         }}
       >
         Confirm

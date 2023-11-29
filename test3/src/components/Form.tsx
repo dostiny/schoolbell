@@ -109,6 +109,7 @@ const Form = ({
         <InputDiv
           className={`${passMsg ? "border-red-600" : ""}`}
           type="password"
+          value={inputName[idx].password}
           onChange={(e) => {
             changePwd(e.target.value);
           }}
