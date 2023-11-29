@@ -2,7 +2,7 @@ import React from "react";
 import tw from "tailwind-styled-components";
 import type { ListType } from "../pages/User";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "./../store/nameList";
+import { userListType, addUser } from "./../store/nameList";
 
 interface PropsType {
   inputName: ListType[];
@@ -12,7 +12,7 @@ interface PropsType {
 }
 
 const FormBottom = ({ inputName, setInputName, nameTF, passTF }: PropsType) => {
-  let username = useSelector((state) => {
+  let username = useSelector((state: { nameList: userListType[] }) => {
     return state;
   });
   let dispatch = useDispatch();
@@ -27,7 +27,7 @@ const FormBottom = ({ inputName, setInputName, nameTF, passTF }: PropsType) => {
     <OutDiv>
       <button
         onClick={() => {
-          console.log(username);
+          console.log(username.nameList);
         }}
       >
         출력
