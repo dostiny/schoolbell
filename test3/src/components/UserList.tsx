@@ -14,13 +14,7 @@ const UserList = () => {
         ? null
         : username.nameList.map((i) => (
             <OutDiv key={i.name}>
-              <NameDiv
-                onClick={() => {
-                  console.log(i.name);
-                }}
-              >
-                Name: {i.name}
-              </NameDiv>
+              <NameDiv>Name: {i.name}</NameDiv>
               <PasswordDiv>
                 password: {i.password.substr(0, 3) + "****"}
               </PasswordDiv>

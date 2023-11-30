@@ -75,9 +75,9 @@ const Form = ({
         <HeaderTitle>User - {id}</HeaderTitle>
         <HeaderClose
           onClick={() => {
-            typeof id === "number"
-              ? OnRemove(id)
-              : console.log("지울 수 없습니다");
+            if (typeof id === "number") {
+              OnRemove(id);
+            }
           }}
         >
           X
@@ -95,13 +95,7 @@ const Form = ({
         <Message className={`${nameMsg ? "" : "hidden"}`}>{nameMsg}</Message>
       </FormDiv>
       <FormDiv>
-        <FormTitle
-          onClick={() => {
-            console.log(nameMsg);
-          }}
-        >
-          Password
-        </FormTitle>
+        <FormTitle>Password</FormTitle>
         <InputDiv
           className={`${passMsg ? "border-red-600" : ""}`}
           type="password"
