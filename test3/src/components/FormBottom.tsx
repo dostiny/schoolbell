@@ -19,7 +19,9 @@ const FormBottom = ({ inputName, setInputName, nameTF, passTF }: PropsType) => {
 
   const AddList = () => {
     const lastIdx: number | null = inputName[inputName.length - 1].id;
-    if (typeof lastIdx === "number") {
+    if (inputName.length === 0) {
+      setInputName([{ id: 0, name: "", password: "" }]);
+    } else if (typeof lastIdx === "number") {
       setInputName([...inputName, { id: lastIdx + 1, name: "", password: "" }]);
     }
   };
@@ -27,10 +29,10 @@ const FormBottom = ({ inputName, setInputName, nameTF, passTF }: PropsType) => {
     <OutDiv>
       <button
         onClick={() => {
-          console.log(username.nameList);
+          console.log(inputName.length);
         }}
       >
-        출력
+        add
       </button>
       <Btn
         onClick={() => {

@@ -72,16 +72,12 @@ const Form = ({
   return (
     <OutDiv>
       <HeaderDiv>
-        <HeaderTitle
-          onClick={() => {
-            console.log(inputName);
-          }}
-        >
-          User - {id}
-        </HeaderTitle>
+        <HeaderTitle>User - {id}</HeaderTitle>
         <HeaderClose
           onClick={() => {
-            typeof id === "number" ? OnRemove(id) : console.log(1);
+            typeof id === "number"
+              ? OnRemove(id)
+              : console.log("지울 수 없습니다");
           }}
         >
           X
