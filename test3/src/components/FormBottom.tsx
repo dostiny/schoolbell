@@ -18,22 +18,20 @@ const FormBottom = ({ inputName, setInputName, nameTF, passTF }: PropsType) => {
   let dispatch = useDispatch();
 
   const AddList = () => {
-    const lastIdx: number | null = inputName[inputName.length - 1].id;
     if (inputName.length === 0) {
       setInputName([{ id: 0, name: "", password: "" }]);
-    } else if (typeof lastIdx === "number") {
-      setInputName([...inputName, { id: lastIdx + 1, name: "", password: "" }]);
+    } else {
+      const lastIdx: number | null = inputName[inputName.length - 1].id;
+      if (typeof lastIdx === "number") {
+        setInputName([
+          ...inputName,
+          { id: lastIdx + 1, name: "", password: "" },
+        ]);
+      }
     }
   };
   return (
     <OutDiv>
-      <button
-        onClick={() => {
-          console.log(inputName.length);
-        }}
-      >
-        add
-      </button>
       <Btn
         onClick={() => {
           AddList();
